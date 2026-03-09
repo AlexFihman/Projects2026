@@ -64,7 +64,7 @@ static void run_chain(int dim, uint64_t steps, uint64_t seed, std::vector<uint64
     const int nbits = 1 << dim;
 
     MonotoneBooleanFunction mbf(dim, rng);
-    randomBoundaryInit(mbf, dim, 4, 5, rng);
+    randomBoundaryInit(mbf, dim, 5, 5, rng);
     // Short burn-in to let boundary drift into levels 3 and 6
     // (init sets hw<4=0 and hw>5=1, but p3≈0.003 so some steps needed)
     for (int i = 0; i < 10000; i++)
@@ -80,7 +80,7 @@ static void run_chain(int dim, uint64_t steps, uint64_t seed, std::vector<uint64
 
 int main()
 {
-    const int dim      = 9;
+    const int dim      = 10;
     const int nbits    = 1 << dim;  // 512
     const int nthreads = std::thread::hardware_concurrency();
     const uint64_t steps_per_thread = 100000000ULL;
