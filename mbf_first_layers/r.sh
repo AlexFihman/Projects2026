@@ -1,0 +1,1 @@
+(for i in $(seq 0 14); do ./mbf $i >> result.txt; done)
