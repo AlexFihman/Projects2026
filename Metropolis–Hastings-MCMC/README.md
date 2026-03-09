@@ -38,6 +38,18 @@ distribution because adjacent states can have different numbers of min-cuts.
 The reverse move is always available (the flipped position remains a min-cut
 in `f'`), so the MH ratio reduces cleanly to the ratio of min-cut counts.
 
+### Performance (n=9, 10M steps)
+
+| | time | vs flipRandom |
+|---|---|---|
+| `flipRandom` | 1102 ms | 1.00× |
+| `metropolisStep` | 1161 ms | 1.05× |
+
+**Rejection rate: ~0.66%** — the chain almost always accepts. The MH overhead
+is a single extra `getSize()` call plus an occasional `uniform_real_distribution`
+draw and flip-back. The min-cut count rarely changes enough between adjacent
+states to cause a rejection.
+
 ## Ring experiment
 
 To measure the mixing time and equilibrium Hamming distance, `main.cpp` runs
